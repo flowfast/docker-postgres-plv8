@@ -22,6 +22,9 @@ RUN buildDependencies="build-essential \
     libc++abi1" \
     && apt-get update \
     && apt-get install -y --no-install-recommends ${buildDependencies} ${runtimeDependencies} \
+    && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen \
+    && sed -i '/ru_RU.UTF-8/s/^# //g' /etc/locale.gen \
+    && locale-gen \
     && git config --global user.name "none" \
     && git config --global user.email "none@example.com" \
     && mkdir -p /tmp/build \
